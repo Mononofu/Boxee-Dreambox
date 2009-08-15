@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:boxee="as http://boxee.tv/spec/rss/">
+<channel>
+    <lastBuildDate>{% now "D, d M Y H:i:s T" %}</lastBuildDate>
+    <title>Dreambox@Boxee</title>
+    <boxee:expiry>0</boxee:expiry>
+    <link>http://localhost/django/dream/</link>
+    <generator>Python</generator>
+    <description>blablabla</description>
+    <language>en</language>
+    <copyright>Creative Commons: http://creativecommons.org/licenses/by-nc-nd/3.0/ </copyright>
+                
+    <image>
+        <url>http://localhost/media/thumbs/DM600PVR.jpg</url>
+        <title>Dreambox</title>
+        <link>http://localhost/django/dream/</link>
+        <width>144</width>
+        <height>144</height>
+    </image>
+    <category>Entertainment</category>
+    <media:rating scheme="urn:simple">nonadult</media:rating>
+    <media:copyright>Creative Commons: http://creativecommons.org/licenses/by-nc-nd/3.0/</media:copyright>
+    <media:thumbnail url="http://localhost/media/thumbs/DM600PVR.jpg" />
+    <media:keywords>Dreambox</media:keywords>
+    <atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" href="http://localhost/django/dream/" type="application/rss+xml" />
+
+{% for dict in channels|dictsort:"name" %}
+    <item>
+        <title>{{ dict.name }}</title>
+        <description>some desc</description>
+        <media:thumbnail url="{{ dict.thumbnail }}" />
+        <enclosure type="video/mp4" url="{{ dict.url }}" length="273610696" />
+        <link>{{ dict.url }}</link>
+        <guid isPermaLink="false">{{ dict.url }}</guid>
+        <pubDate>{% now "r" %}</pubDate>
+        <category>Entertainment</category>
+        <media:content url="{{ dict.url }}"/>
+    </item>
+{% endfor %}
+
+    <media:credit role="author">Dreambox</media:credit><media:rating>nonadult</media:rating><media:description type="plain">My personal Dreambox channels</media:description>
+</channel>
+</rss>
